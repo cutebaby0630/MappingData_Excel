@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
-
+using System.Linq;
 
 namespace ConsoleMappingData
 {
-    public class DBdata
+    public class Data
     {
         public string TableName { get; set; }
         //public string CSVName { get; set; }
@@ -16,19 +16,14 @@ namespace ConsoleMappingData
         public string TableDescription { get; set; }
         public string CreateDate { get; set; }
         public string ModifyDate { get; set; }
-
+        public string FileName { get; set; }
+        public string CSVName { get; set; }
         public override string ToString()
         {
             return base.ToString();
         }
     }
-    public class FileData
-    {
-        public string FileName { get; set; }
-        public string CSVName { get; set; }
 
-       
-    }
     class Program
     {
         static void Main(string[] args)
@@ -36,13 +31,14 @@ namespace ConsoleMappingData
             // Step 1.檔案清單列出
 
             //1.1 讀取檔案名稱存成List("FileName":filename)
-            List<FileData> filename = new List<FileData>();
+            List<Data> filename = new List<Data>();
             DirectoryInfo readfile = new DirectoryInfo(@"D:\微軟MCS\CSV檔");
             foreach (var file in readfile.GetFiles())
             {
-                filename.Add(new FileData() { 
-                    FileName = file.Name.ToString(),
-                    CSVName = file.Name.ToString().Replace(".csv", "")
+                filename.Add(new Data()
+                {
+                    CSVName = file.Name.ToString(),
+                    FileName = file.Name.ToString().Replace(".csv", "")
                 });
             }
             Console.WriteLine(filename.Count);
@@ -84,7 +80,6 @@ namespace ConsoleMappingData
             DataTable dt = new DataTable();
 
             //2.1 連接DB取得相對應資料表資料
-
             SqlConnection conn = new SqlConnection(connString);
             try
             {
@@ -102,10 +97,10 @@ namespace ConsoleMappingData
             }
 
             //2.2 讀取相對應DB table 欄位名稱([TableName],[InitialDataFiles])存成List("FileName":TableName, "CSVName":InitialDataFiles)
-            List<DBdata> dbfilename = new List<DBdata>();
+            List<Data> dbfilename = new List<Data>();
             foreach (DataRow row in dt.Rows)
             {
-                dbfilename.Add(new DBdata()
+                dbfilename.Add(new Data()
                 {
                     TableName = row["TableName"].ToString(),
                     SchemaName = row["SchemaName"].ToString(),
@@ -116,11 +111,24 @@ namespace ConsoleMappingData
                 });
             }
 
+
             //Step 3. 1 + 2 Mapping
 
-            //3.1 將兩個List利用迴圈比對
+            //3.1 Map two List
+            //var result = dbfilename.MapFrom(a => filename.Select(b => b.FileName).Contains(a.TableName)).ToList();
+            var result1 = from db in dbfilename
+                          join local in filename
+                          on db.TableName equals local.FileName into map
+                          from allresult in map.DefaultIfEmpty()
+                          select new { db.TableName, db.TableDescription, db.ModifyDate, Filename = allresult?.CSVName ?? String.Empty };
+
+
 
             //3.2 印出結果
+            foreach (var v in result1)
+            {
+                Console.WriteLine(v.TableName + "\t"+v.TableDescription+"\t" +v.ModifyDate+"\t"+ v.Filename);
+            }
 
             //Step 4.Export EXCE
 
