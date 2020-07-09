@@ -14,15 +14,13 @@ namespace ConsoleMappingData
 
             //1.1 讀取檔案名稱存成List("FileName":filename)
             List<string> filename = new List<string>();
-            
             DirectoryInfo readfile = new DirectoryInfo(@"D:\微軟MCS\CSV檔");
-            foreach (var file in readfile.GetFiles()) {
-                var name = file.Name.ToString().Replace(".csv","");
+            foreach (var file in readfile.GetFiles())
+            {
+                var name = file.Name.ToString().Replace(".csv", "");
                 filename.Add(name);
-                Console.WriteLine(name);
             }
-            
-
+            Console.WriteLine(filename.Count);
             //Step 2.DB Table List
 
             //2.1 連接DB
