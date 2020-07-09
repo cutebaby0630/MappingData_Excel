@@ -7,6 +7,28 @@ using System.IO;
 
 namespace ConsoleMappingData
 {
+    public class DBdata
+    {
+        public string TableName { get; set; }
+        //public string CSVName { get; set; }
+        public string SchemaName { get; set; }
+        public int ColumnCount { get; set; }
+        public string TableDescription { get; set; }
+        public string CreateDate { get; set; }
+        public string ModifyDate { get; set; }
+
+        public override string ToString()
+        {
+            return base.ToString();
+        }
+    }
+    public class FileData
+    {
+        public string FileName { get; set; }
+        public string CSVName { get; set; }
+
+       
+    }
     class Program
     {
         static void Main(string[] args)
@@ -14,24 +36,51 @@ namespace ConsoleMappingData
             // Step 1.檔案清單列出
 
             //1.1 讀取檔案名稱存成List("FileName":filename)
-            List<string> filename = new List<string>();
+            List<FileData> filename = new List<FileData>();
             DirectoryInfo readfile = new DirectoryInfo(@"D:\微軟MCS\CSV檔");
             foreach (var file in readfile.GetFiles())
             {
-                var name = file.Name.ToString().Replace(".csv", "");
-                filename.Add(name);
+                filename.Add(new FileData() { 
+                    FileName = file.Name.ToString(),
+                    CSVName = file.Name.ToString().Replace(".csv", "")
+                });
             }
             Console.WriteLine(filename.Count);
 
             //Step 2.DB Table List
             var datasource = @"10.1.225.17";
-            var database = "SSISDB";
+            var database = "HISDB";
             var username = "msdba";
             var password = "1qaz@wsx";
-            string connString =  @"Data Source=" + datasource + ";Initial Catalog=" + database + ";Persist Security Info=True;User ID=" + username + ";Password=" + password;
-            string sql = @"SELECT  [TableName]
-                          ,ISNULL([InitialDataFiles],'')
-                          FROM [SSISDB].[dbo].[TableInfo];";
+            string connString = @"Data Source=" + datasource + ";Initial Catalog=" + database + ";Persist Security Info=True;User ID=" + username + ";Password=" + password;
+            string sql = @"SELECT S1.NAME TableName, --AS 資料表名稱,
+                                  schema_name(s1.schema_id) SchemaName,--AS 結構名稱,
+                                  S1.MAX_COLUMN_ID_USED ColumnCount,--AS 欄位數,
+                                  ISNULL(S3.VALUE,'') TableDescription, --AS 資料表描述,
+                                  s1.CREATE_DATE CreateDate,--AS 建立時間,
+                                  S1.MODIFY_DATE ModifyDate --AS 修改時間
+                           FROM SYS.TABLES S1
+                           LEFT JOIN (
+                                        SELECT * FROM SYS.OBJECTS S WHERE TYPE = 'PK'
+                                     ) S2 ON S1.OBJECT_ID = S2.parent_object_id 
+                           LEFT JOIN ( 
+                                        SELECT T.Name , Convert(Varchar(500),P.Value) as Value
+                                        FROM SYS.EXTENDED_PROPERTIES P
+                                        INNER JOIN SYS.objects T  ON P.MAJOR_ID = T.OBJECT_ID 
+                                        LEFT JOIN SYS.TABLES O ON T.parent_object_id = O.object_id
+                                        INNER JOIN SYS.schemas S ON T.schema_id = S.schema_id 
+                                        LEFT JOIN SYS.COLUMNS C ON T.object_id = c.object_id and P.MINOR_ID = C.column_id  
+                                        LEFT JOIN SYS.indexes I  ON T.object_id = I.object_id and P.MINOR_ID = I.INDEX_id 
+                                        WHERE P.CLASS = 1 AND T.TYPE = 'U' AND C.Name IS NULL
+                                     ) S3  ON S1.NAME = S3.NAME
+                           WHERE s1.is_ms_shipped = 0
+                           AND (s1.NAME NOT LIKE 'DDSC[_]%'
+                           AND s1.NAME NOT LIKE 'STG[_]%'
+                           AND s1.NAME NOT LIKE 'ERR[_]%'
+                           AND s1.NAME NOT LIKE 'TMP%'
+                           AND s1.NAME NOT LIKE 'TEMP%'
+                           )
+                           ORDER BY 1";
             DataTable dt = new DataTable();
 
             //2.1 連接DB取得相對應資料表資料
@@ -47,14 +96,26 @@ namespace ConsoleMappingData
                 Console.WriteLine("Success!!!");
                 conn.Close();
             }
-            catch (Exception e) {
+            catch (Exception e)
+            {
                 Console.WriteLine("Fail  " + e.Message);
             }
 
             //2.2 讀取相對應DB table 欄位名稱([TableName],[InitialDataFiles])存成List("FileName":TableName, "CSVName":InitialDataFiles)
-
-            foreach () { 
+            List<DBdata> dbfilename = new List<DBdata>();
+            foreach (DataRow row in dt.Rows)
+            {
+                dbfilename.Add(new DBdata()
+                {
+                    TableName = row["TableName"].ToString(),
+                    SchemaName = row["SchemaName"].ToString(),
+                    ColumnCount = (int)row["ColumnCount"],
+                    TableDescription = row["TableDescription"].ToString(),
+                    CreateDate = row["CreateDate"].ToString(),
+                    ModifyDate = row["ModifyDate"].ToString()
+                });
             }
+
             //Step 3. 1 + 2 Mapping
 
             //3.1 將兩個List利用迴圈比對
