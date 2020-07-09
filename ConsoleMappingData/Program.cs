@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using Xceed.Wpf.Toolkit;
 
@@ -11,6 +13,15 @@ namespace ConsoleMappingData
             // Step 1.檔案清單列出
 
             //1.1 讀取檔案名稱存成List("FileName":filename)
+            List<string> filename = new List<string>();
+            
+            DirectoryInfo readfile = new DirectoryInfo(@"D:\微軟MCS\CSV檔");
+            foreach (var file in readfile.GetFiles()) {
+                var name = file.Name.ToString().Replace(".csv","");
+                filename.Add(name);
+                Console.WriteLine(name);
+            }
+            
 
             //Step 2.DB Table List
 
