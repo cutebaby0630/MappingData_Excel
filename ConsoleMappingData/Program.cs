@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System.Data.SqlClient;
 using System.IO;
-using Xceed.Wpf.Toolkit;
+
 
 namespace ConsoleMappingData
 {
@@ -22,9 +22,25 @@ namespace ConsoleMappingData
             }
             Console.WriteLine(filename.Count);
             //Step 2.DB Table List
+            var datasource = @"10.1.225.17";
+            var database = "SSISDB";
+            var username = "msdba";
+            var password = "1qaz@wsx";
+            string connString =  @"Data Source=" + datasource + ";Initial Catalog=" + database + ";Persist Security Info=True;User ID=" + username + ";Password=" + password;
 
             //2.1 連接DB
+            SqlConnection conn = new SqlConnection(connString);
+            try
+            {
+                Console.WriteLine("Open Connection");
+                conn.Open();
+                Console.WriteLine("Success!!!");
 
+            }
+            catch (Exception e) {
+                Console.WriteLine("Fail  " + e.Message);
+            }
+            
             //2.2 讀取相對應DB table 欄位名稱([TableName],[InitialDataFiles])存成List("FileName":TableName, "CSVName":InitialDataFiles)
 
             //Step 3. 1 + 2 Mapping

@@ -23,8 +23,14 @@ C:\Users\user\Source\Repos\ConsoleMappingData\ConsoleMappingData\bin\Debug\netco
 C:\Users\user\Source\Repos\ConsoleMappingData\ConsoleMappingData\bin\Debug\netcoreapp3.1\ru\Xceed.Wpf.AvalonDock.resources.dll
 C:\Users\user\Source\Repos\ConsoleMappingData\ConsoleMappingData\bin\Debug\netcoreapp3.1\sv\Xceed.Wpf.AvalonDock.resources.dll
 C:\Users\user\Source\Repos\ConsoleMappingData\ConsoleMappingData\bin\Debug\netcoreapp3.1\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\user\Source\Repos\ConsoleMappingData\ConsoleMappingData\obj\Debug\netcoreapp3.1\ConsoleMappingData.csproj.CoreCompileInputs.cache
 C:\Users\user\Source\Repos\ConsoleMappingData\ConsoleMappingData\obj\Debug\netcoreapp3.1\ConsoleMappingData.csproj.CopyComplete
 C:\Users\user\Source\Repos\ConsoleMappingData\ConsoleMappingData\obj\Debug\netcoreapp3.1\ConsoleMappingData.dll
 C:\Users\user\Source\Repos\ConsoleMappingData\ConsoleMappingData\obj\Debug\netcoreapp3.1\ConsoleMappingData.pdb
 C:\Users\user\Source\Repos\ConsoleMappingData\ConsoleMappingData\obj\Debug\netcoreapp3.1\ConsoleMappingData.genruntimeconfig.cache
+C:\Users\user\Source\Repos\ConsoleMappingData\ConsoleMappingData\bin\Debug\netcoreapp3.1\System.Data.SqlClient.dll
+C:\Users\user\Source\Repos\ConsoleMappingData\ConsoleMappingData\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
+C:\Users\user\Source\Repos\ConsoleMappingData\ConsoleMappingData\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\sni.dll
+C:\Users\user\Source\Repos\ConsoleMappingData\ConsoleMappingData\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
+C:\Users\user\Source\Repos\ConsoleMappingData\ConsoleMappingData\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\user\Source\Repos\ConsoleMappingData\ConsoleMappingData\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\user\Source\Repos\ConsoleMappingData\ConsoleMappingData\obj\Debug\netcoreapp3.1\ConsoleMappingData.csproj.CoreCompileInputs.cache
