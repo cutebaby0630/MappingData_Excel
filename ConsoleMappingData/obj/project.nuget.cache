@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "dgSpecHash": "XSPQ1Ki1iJZtxDshAqzBrgCE3ul/eJOkF4sZfPDk8W16nQlEVTYWXV1gDoaW8HiWTe+pe9EPDeTSPluAZIayeA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\user\\Source\\Repos\\ConsoleMappingData\\ConsoleMappingData\\ConsoleMappingData.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\user\\.nuget\\packages\\extended.wpf.toolkit\\4.0.1\\extended.wpf.toolkit.4.0.1.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "已使用 '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' 而非專案目標架構 '.NETCoreApp,Version=v3.1' 還原了套件 'Extended.Wpf.Toolkit 4.0.1'。此套件與您的專案並非完全相容。",
+      "libraryId": "Extended.Wpf.Toolkit",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    }
+  ]
+}
