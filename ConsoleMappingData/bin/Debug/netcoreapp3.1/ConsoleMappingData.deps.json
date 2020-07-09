@@ -10,6 +10,7 @@
         "dependencies": {
           "EPPlus": "5.2.0",
           "Extended.Wpf.Toolkit": "4.0.1",
+          "Grpc.Core": "2.30.0",
           "System.Data.SqlClient": "4.8.1"
         },
         "runtime": {
@@ -93,6 +94,61 @@
           },
           "lib/net40/zh-Hans/Xceed.Wpf.AvalonDock.resources.dll": {
             "locale": "zh-Hans"
+          }
+        }
+      },
+      "Grpc.Core/2.30.0": {
+        "dependencies": {
+          "Grpc.Core.Api": "2.30.0",
+          "System.Memory": "4.5.3"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Grpc.Core.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.30.0.0"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/linux/native/libgrpc_csharp_ext.x64.so": {
+            "rid": "linux",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux/native/libgrpc_csharp_ext.x86.so": {
+            "rid": "linux",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/osx/native/libgrpc_csharp_ext.x64.dylib": {
+            "rid": "osx",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/osx/native/libgrpc_csharp_ext.x86.dylib": {
+            "rid": "osx",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win/native/grpc_csharp_ext.x64.dll": {
+            "rid": "win",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win/native/grpc_csharp_ext.x86.dll": {
+            "rid": "win",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "Grpc.Core.Api/2.30.0": {
+        "dependencies": {
+          "System.Memory": "4.5.3"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Grpc.Core.Api.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.30.0.0"
           }
         }
       },
@@ -496,6 +552,7 @@
           "System.Runtime.Extensions": "4.3.0"
         }
       },
+      "System.Memory/4.5.3": {},
       "System.Reflection/4.3.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "3.1.1",
@@ -871,6 +928,20 @@
       "path": "extended.wpf.toolkit/4.0.1",
       "hashPath": "extended.wpf.toolkit.4.0.1.nupkg.sha512"
     },
+    "Grpc.Core/2.30.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-wng69Wi893WmcSwK1cackh55QNaImVgM6gmTCvk+TM+raBHqVArZt5UYsS8M9w9P/v0HjeyHeFYNfeSZdjcPrQ==",
+      "path": "grpc.core/2.30.0",
+      "hashPath": "grpc.core.2.30.0.nupkg.sha512"
+    },
+    "Grpc.Core.Api/2.30.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-olr6WVb/aNp/2cAKhHl/b5IGTDjc0lCnT2tk/IY43wHix3+NIrF9gQr4tgXVbt7wDbf55+xDE/yicqa6ao/l2Q==",
+      "path": "grpc.core.api/2.30.0",
+      "hashPath": "grpc.core.api.2.30.0.nupkg.sha512"
+    },
     "Microsoft.Extensions.Configuration/3.1.5": {
       "type": "package",
       "serviceable": true,
@@ -1220,6 +1291,13 @@
       "sha512": "sha512-5DbqIUpsDp0dFftytzuMmc0oeMdQwjcP/EWxsksIz/w1TcFRkZ3yKKz0PqiYFMmEwPSWw+qNVqD7PJ889JzHbw==",
       "path": "system.linq/4.3.0",
       "hashPath": "system.linq.4.3.0.nupkg.sha512"
+    },
+    "System.Memory/4.5.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-3oDzvc/zzetpTKWMShs1AADwZjQ/36HnsufHRPcOjyRAAMLDlu2iD33MBI2opxnezcVUtXyqDXXjoFMOU9c7SA==",
+      "path": "system.memory/4.5.3",
+      "hashPath": "system.memory.4.5.3.nupkg.sha512"
     },
     "System.Reflection/4.3.0": {
       "type": "package",

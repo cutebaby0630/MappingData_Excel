@@ -50,6 +50,10 @@
               "target": "Package",
               "version": "[4.0.1, )"
             },
+            "Grpc.Core": {
+              "target": "Package",
+              "version": "[2.30.0, )"
+            },
             "System.Data.SqlClient": {
               "target": "Package",
               "version": "[4.8.1, )"

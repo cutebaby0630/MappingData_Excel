@@ -149,7 +149,30 @@ namespace ConsoleMappingData
                 Byte[] bin = finish.GetAsByteArray();
                 File.WriteAllBytes(@"D:\微軟MCS\" + excelname, bin);
             }
+            //4.2 讀取EXCEL
+            FileInfo excel_new = new FileInfo(@"D:\微軟MCS\" + excelname);
+            using (ExcelPackage package = new ExcelPackage(excel_new))
+            {
+                //4.3將值塞到EXCEL裡
+                //ExcelWorksheet firstsheet = package.Workbook.Worksheets.FirstOrDefault();
+                ExcelWorksheet firstSheet = package.Workbook.Worksheets.Add("目錄");
+                try
+                {
+                    firstSheet = package.Workbook.Worksheets[0];
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Fail  " + e.Message);
+                }
 
+                //塞資料到某一格
+                firstSheet.Cells[1, 1].Value = "測試";
+                //塞資料到多格，範圍A1~C2
+                firstSheet.Cells[1, 1, 2, 3].Value = "測試";
+                //數字看起不好讀，也可以這樣寫
+                firstSheet.Cells["A1:J3"].Value = "測試";
+
+            }
 
 
 

@@ -1,11 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "+MO8r84cHKGKI5JgrO/GWwvvqZXsnswhHES2iA7AgsqfePQmJjjgfmkcrbyVgOpMxHFtmhswz+ZsMR+m1xeJTA==",
+  "dgSpecHash": "esviLcVHqCuyemKJdAKv+f5iH1BadYTKTjIIq73ESJ8zUXU9b9KxUS+IP6d29ZsvaFRsD1ZL4XAFk4uPHxmH8Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\user\\Source\\Repos\\ConsoleMappingData\\ConsoleMappingData\\ConsoleMappingData.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\epplus\\5.2.0\\epplus.5.2.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\extended.wpf.toolkit\\4.0.1\\extended.wpf.toolkit.4.0.1.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\grpc.core\\2.30.0\\grpc.core.2.30.0.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\grpc.core.api\\2.30.0\\grpc.core.api.2.30.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.extensions.configuration\\3.1.5\\microsoft.extensions.configuration.3.1.5.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\3.1.5\\microsoft.extensions.configuration.abstractions.3.1.5.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.extensions.configuration.fileextensions\\3.1.5\\microsoft.extensions.configuration.fileextensions.3.1.5.nupkg.sha512",
@@ -56,6 +58,7 @@
     "C:\\Users\\user\\.nuget\\packages\\system.io.filesystem\\4.3.0\\system.io.filesystem.4.3.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\system.io.filesystem.primitives\\4.3.0\\system.io.filesystem.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\system.linq\\4.3.0\\system.linq.4.3.0.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\system.reflection\\4.3.0\\system.reflection.4.3.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\system.reflection.extensions\\4.3.0\\system.reflection.extensions.4.3.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\system.reflection.primitives\\4.3.0\\system.reflection.primitives.4.3.0.nupkg.sha512",
