@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 
@@ -21,28 +22,39 @@ namespace ConsoleMappingData
                 filename.Add(name);
             }
             Console.WriteLine(filename.Count);
+
             //Step 2.DB Table List
             var datasource = @"10.1.225.17";
             var database = "SSISDB";
             var username = "msdba";
             var password = "1qaz@wsx";
             string connString =  @"Data Source=" + datasource + ";Initial Catalog=" + database + ";Persist Security Info=True;User ID=" + username + ";Password=" + password;
+            string sql = @"SELECT  [TableName]
+                          ,ISNULL([InitialDataFiles],'')
+                          FROM [SSISDB].[dbo].[TableInfo];";
+            DataTable dt = new DataTable();
 
-            //2.1 連接DB
+            //2.1 連接DB取得相對應資料表資料
+
             SqlConnection conn = new SqlConnection(connString);
             try
             {
                 Console.WriteLine("Open Connection");
                 conn.Open();
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(cmd);
+                sqlDataAdapter.Fill(dt);
                 Console.WriteLine("Success!!!");
-
+                conn.Close();
             }
             catch (Exception e) {
                 Console.WriteLine("Fail  " + e.Message);
             }
-            
+
             //2.2 讀取相對應DB table 欄位名稱([TableName],[InitialDataFiles])存成List("FileName":TableName, "CSVName":InitialDataFiles)
 
+            foreach () { 
+            }
             //Step 3. 1 + 2 Mapping
 
             //3.1 將兩個List利用迴圈比對
