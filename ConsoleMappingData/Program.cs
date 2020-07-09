@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OfficeOpenXml;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -127,10 +128,27 @@ namespace ConsoleMappingData
             //3.2 印出結果
             foreach (var v in result1)
             {
-                Console.WriteLine(v.TableName + "\t"+v.TableDescription+"\t" +v.ModifyDate+"\t"+ v.Filename);
+                Console.WriteLine(v.TableName + "\t" + v.TableDescription + "\t" + v.ModifyDate + "\t" + v.Filename);
             }
 
-            //Step 4.Export EXCE
+            //Step 4.Export EXCEL
+            //4.1 產生EXCEL
+            var excelname = "MapData" + DateTime.Now.ToString("yyyyMMddhhmm") + ".xlsx";
+            var excel = new FileInfo(excelname);
+            // If you are a commercial business and have
+            // purchased commercial licenses use the static property
+            // LicenseContext of the ExcelPackage class:
+            ExcelPackage.LicenseContext = LicenseContext.Commercial;
+
+            // If you use EPPlus in a noncommercial context
+            // according to the Polyform Noncommercial license:
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            using (var finish = new ExcelPackage(excel))
+            {
+                finish.Workbook.Worksheets.Add("結果");
+                Byte[] bin = finish.GetAsByteArray();
+                File.WriteAllBytes(@"D:\微軟MCS\" + excelname, bin);
+            }
 
 
 
