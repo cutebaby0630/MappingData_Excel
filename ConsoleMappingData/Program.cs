@@ -1,9 +1,11 @@
 ﻿using DocumentFormat.OpenXml.Drawing;
 using OfficeOpenXml;
+using OfficeOpenXml.Style;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 
@@ -127,22 +129,16 @@ namespace ConsoleMappingData
 
 
             //3.2 印出結果
-            foreach (var v in result1)
+            /*foreach (var v in result1)
             {
                 Console.WriteLine(v.TableName + "\t" + v.TableDescription + "\t" + v.ModifyDate + "\t" + v.Filename);
-            }
+            }*/
 
             //Step 4.Export EXCEL
             //4.1 產生EXCEL
             var excelname = "MapData" + DateTime.Now.ToString("yyyyMMddhhmm") + ".xlsx";
             var excel = new FileInfo(excelname);
-            // If you are a commercial business and have
-            // purchased commercial licenses use the static property
-            // LicenseContext of the ExcelPackage class:
             ExcelPackage.LicenseContext = LicenseContext.Commercial;
-
-            // If you use EPPlus in a noncommercial context
-            // according to the Polyform Noncommercial license:
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             using (var finish = new ExcelPackage(excel))
             {
@@ -158,21 +154,30 @@ namespace ConsoleMappingData
                 //4.3將值塞到EXCEL裡
 
                 ExcelWorksheet firstsheet = package.Workbook.Worksheets[0];
+                int rowIndex = 1;
+                int colIndex = 1;
+                //4.3.1塞資料到某一格
+                firstsheet.Cells[rowIndex, colIndex++].Value = "TableName";
+                firstsheet.Cells[rowIndex, colIndex++].Value = "TableDescription";
+                firstsheet.Cells[rowIndex, colIndex++].Value = "ModifyDate";
+                firstsheet.Cells[rowIndex, colIndex++].Value = "Filename";
 
-                //塞資料到某一格
-
-                firstsheet.Cells[1, 1].Value = "TableName";
-                firstsheet.Cells[1, 2].Value = "TableDescription";
-                firstsheet.Cells[1, 3].Value = "ModifyDate";
-                firstsheet.Cells[1, 4].Value = "Filename";
-
+                foreach (var v in result1)
+                {
+                    rowIndex++;
+                    colIndex = 1;
+                    firstsheet.Column(rowIndex).AutoFit();
+                    firstsheet.Cells[rowIndex, colIndex++].Value = v.TableName;
+                    firstsheet.Cells[rowIndex, colIndex++].Value = v.TableDescription;
+                    firstsheet.Cells[rowIndex, colIndex++].Value = v.ModifyDate;
+                    firstsheet.Cells[rowIndex, colIndex++].Value = v.Filename;
+                    
+                }
+                
                 Byte[] bin = package.GetAsByteArray();
                 File.WriteAllBytes(@"D:\微軟MCS\" + excelname, bin);
 
             }
-
-           
-
         }
     }
 }
