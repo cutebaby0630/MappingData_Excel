@@ -26,7 +26,31 @@ namespace ConsoleMappingData
             return base.ToString();
         }
     }
+    public static class ExcelExtensions
+    {
+        // SetQuickStyle，指定前景色/背景色/水平對齊
+        public static void SetQuickStyle(this ExcelRange range,
+            Color fontColor,
+            Color bgColor = default(Color),
+            ExcelHorizontalAlignment hAlign = ExcelHorizontalAlignment.Left)
+        {
+            range.Style.Font.Color.SetColor(fontColor);
+            if (bgColor != default(Color))
+            {
+                range.Style.Fill.PatternType = ExcelFillStyle.Solid; // 一定要加這行..不然會報錯
+                range.Style.Fill.BackgroundColor.SetColor(bgColor);
+            }
+            range.Style.HorizontalAlignment = hAlign;
+        }
 
+        //讓文字上有連結
+        public static void SetHyperlink(this ExcelRange range, Uri uri)
+        {
+            range.Hyperlink = uri;
+            range.Style.Font.UnderLine = true;
+            range.Style.Font.Color.SetColor(Color.Blue);
+        }
+    }
     class Program
     {
         static void Main(string[] args)
@@ -143,7 +167,6 @@ namespace ConsoleMappingData
             using (ExcelPackage package = new ExcelPackage(excel_new))
             {
                 //4.3將值塞到EXCEL裡
-
                 ExcelWorksheet firstsheet = package.Workbook.Worksheets[0];
                 int rowIndex = 1;
                 int colIndex = 1;
@@ -155,11 +178,10 @@ namespace ConsoleMappingData
                 firstsheet.Cells[rowIndex, colIndex++].Value = "ModifyDate";
                 firstsheet.Cells[rowIndex, colIndex++].Value = "Filename";
                 //4.3.2 Cell Style
-                //一定要加這行..不然會報錯
-                firstsheet.Cells[rowIndex, 1, rowIndex, colIndex - 1].Style.Fill.PatternType = ExcelFillStyle.Solid;
-                //上色
-                firstsheet.Cells[rowIndex, 1, rowIndex, colIndex - 1].Style.Fill.BackgroundColor.SetColor(Color.LightPink);
-                firstsheet.Cells[rowIndex, 1, rowIndex, colIndex - 1].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                
+                
+                firstsheet.Cells[rowIndex, 1, rowIndex, colIndex - 1]
+                 .SetQuickStyle(Color.Black, Color.LightPink, ExcelHorizontalAlignment.Center);
 
                 foreach (var v in result1)
                 {
