@@ -161,19 +161,28 @@ namespace ConsoleMappingData
                 firstsheet.Cells[rowIndex, colIndex++].Value = "TableDescription";
                 firstsheet.Cells[rowIndex, colIndex++].Value = "ModifyDate";
                 firstsheet.Cells[rowIndex, colIndex++].Value = "Filename";
-
+                //一定要加這行..不然會報錯
+                firstsheet.Cells[rowIndex, 1, 2, 3].Style.Fill.PatternType = ExcelFillStyle.Solid;
+                //上色
+                firstsheet.Cells[rowIndex, 1, 2, 3].Style.Fill.BackgroundColor.SetColor(Color.LightPink);
                 foreach (var v in result1)
                 {
                     rowIndex++;
                     colIndex = 1;
-                    firstsheet.Column(rowIndex).AutoFit();
+
                     firstsheet.Cells[rowIndex, colIndex++].Value = v.TableName;
                     firstsheet.Cells[rowIndex, colIndex++].Value = v.TableDescription;
                     firstsheet.Cells[rowIndex, colIndex++].Value = v.ModifyDate;
                     firstsheet.Cells[rowIndex, colIndex++].Value = v.Filename;
-                    
+
                 }
-                
+                //4.3.2 儲存格和字數相等
+                int startColumn = firstsheet.Dimension.Start.Column;
+                int endColumn = firstsheet.Dimension.End.Column;
+                for (int count = startColumn; count <= endColumn; count++)
+                {
+                    firstsheet.Column(count).AutoFit();
+                }
                 Byte[] bin = package.GetAsByteArray();
                 File.WriteAllBytes(@"D:\微軟MCS\" + excelname, bin);
 
