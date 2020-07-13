@@ -1,5 +1,4 @@
-﻿using DocumentFormat.OpenXml.Drawing;
-using OfficeOpenXml;
+﻿using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using System;
 using System.Collections.Generic;
@@ -126,14 +125,6 @@ namespace ConsoleMappingData
                           from allresult in map.DefaultIfEmpty()
                           select new { db.TableName, db.TableDescription, db.ModifyDate, Filename = allresult?.CSVName ?? String.Empty };
 
-
-
-            //3.2 印出結果
-            /*foreach (var v in result1)
-            {
-                Console.WriteLine(v.TableName + "\t" + v.TableDescription + "\t" + v.ModifyDate + "\t" + v.Filename);
-            }*/
-
             //Step 4.Export EXCEL
             //4.1 產生EXCEL
             var excelname = "MapData" + DateTime.Now.ToString("yyyyMMddhhmm") + ".xlsx";
@@ -156,25 +147,29 @@ namespace ConsoleMappingData
                 ExcelWorksheet firstsheet = package.Workbook.Worksheets[0];
                 int rowIndex = 1;
                 int colIndex = 1;
+                int num = 1;
                 //4.3.1塞資料到某一格
+                firstsheet.Cells[rowIndex, colIndex++].Value = "";
                 firstsheet.Cells[rowIndex, colIndex++].Value = "TableName";
                 firstsheet.Cells[rowIndex, colIndex++].Value = "TableDescription";
                 firstsheet.Cells[rowIndex, colIndex++].Value = "ModifyDate";
                 firstsheet.Cells[rowIndex, colIndex++].Value = "Filename";
                 //一定要加這行..不然會報錯
-                firstsheet.Cells[rowIndex, 1, 2, 3].Style.Fill.PatternType = ExcelFillStyle.Solid;
+                firstsheet.Cells[rowIndex, 1, rowIndex, colIndex - 1].Style.Fill.PatternType = ExcelFillStyle.Solid;
                 //上色
-                firstsheet.Cells[rowIndex, 1, 2, 3].Style.Fill.BackgroundColor.SetColor(Color.LightPink);
+                firstsheet.Cells[rowIndex, 1, rowIndex, colIndex - 1].Style.Fill.BackgroundColor.SetColor(Color.LightPink);
+                firstsheet.Cells[rowIndex, 1, rowIndex, colIndex - 1].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+
                 foreach (var v in result1)
                 {
                     rowIndex++;
                     colIndex = 1;
-
+                    firstsheet.Cells[rowIndex, colIndex++].Value = num;
                     firstsheet.Cells[rowIndex, colIndex++].Value = v.TableName;
                     firstsheet.Cells[rowIndex, colIndex++].Value = v.TableDescription;
                     firstsheet.Cells[rowIndex, colIndex++].Value = v.ModifyDate;
                     firstsheet.Cells[rowIndex, colIndex++].Value = v.Filename;
-
+                    num++;
                 }
                 //4.3.2 儲存格和字數相等
                 int startColumn = firstsheet.Dimension.Start.Column;
