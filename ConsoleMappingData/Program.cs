@@ -154,6 +154,7 @@ namespace ConsoleMappingData
                 firstsheet.Cells[rowIndex, colIndex++].Value = "TableDescription";
                 firstsheet.Cells[rowIndex, colIndex++].Value = "ModifyDate";
                 firstsheet.Cells[rowIndex, colIndex++].Value = "Filename";
+                //4.3.2 Cell Style
                 //一定要加這行..不然會報錯
                 firstsheet.Cells[rowIndex, 1, rowIndex, colIndex - 1].Style.Fill.PatternType = ExcelFillStyle.Solid;
                 //上色
@@ -171,7 +172,7 @@ namespace ConsoleMappingData
                     firstsheet.Cells[rowIndex, colIndex++].Value = v.Filename;
                     num++;
                 }
-                //4.3.2 儲存格和字數相等
+                //4.3.3 儲存格和字數相等
                 int startColumn = firstsheet.Dimension.Start.Column;
                 int endColumn = firstsheet.Dimension.End.Column;
                 for (int count = startColumn; count <= endColumn; count++)
