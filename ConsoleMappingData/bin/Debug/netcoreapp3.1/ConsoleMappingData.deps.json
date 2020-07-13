@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v3.1": {
       "ConsoleMappingData/1.0.0": {
         "dependencies": {
+          "DocumentFormat.OpenXml": "2.11.2",
           "EPPlus": "5.2.0",
           "Extended.Wpf.Toolkit": "4.0.1",
           "Grpc.Core": "2.30.0",
@@ -15,6 +16,17 @@
         },
         "runtime": {
           "ConsoleMappingData.dll": {}
+        }
+      },
+      "DocumentFormat.OpenXml/2.11.2": {
+        "dependencies": {
+          "System.IO.Packaging": "4.7.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/DocumentFormat.OpenXml.dll": {
+            "assemblyVersion": "2.11.2.0",
+            "fileVersion": "2.11.2.0"
+          }
         }
       },
       "EPPlus/5.2.0": {
@@ -543,6 +555,14 @@
           "System.Runtime": "4.3.0"
         }
       },
+      "System.IO.Packaging/4.7.0": {
+        "runtime": {
+          "lib/netstandard2.0/System.IO.Packaging.dll": {
+            "assemblyVersion": "4.0.5.0",
+            "fileVersion": "4.700.19.56404"
+          }
+        }
+      },
       "System.Linq/4.3.0": {
         "dependencies": {
           "System.Collections": "4.3.0",
@@ -914,6 +934,13 @@
       "serviceable": false,
       "sha512": ""
     },
+    "DocumentFormat.OpenXml/2.11.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-gSGweleaEzDHI8fvqtyYgkztgQ3L3/JqoBNkeT4u3wjqNBaNQtPFIqXrnVtT8qC0Wgyxk0cT5707/EPLarwv6Q==",
+      "path": "documentformat.openxml/2.11.2",
+      "hashPath": "documentformat.openxml.2.11.2.nupkg.sha512"
+    },
     "EPPlus/5.2.0": {
       "type": "package",
       "serviceable": true,
@@ -1284,6 +1311,13 @@
       "sha512": "sha512-6QOb2XFLch7bEc4lIcJH49nJN2HV+OC3fHDgsLVsBVBk3Y4hFAnOBGzJ2lUu7CyDDFo9IBWkSsnbkT6IBwwiMw==",
       "path": "system.io.filesystem.primitives/4.3.0",
       "hashPath": "system.io.filesystem.primitives.4.3.0.nupkg.sha512"
+    },
+    "System.IO.Packaging/4.7.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-9VV4KAbgRQZ79iEoG40KIeZy38O30oWwewScAST879+oki8g/Wa2HXZQgrhDDxQM4GkP1PnRJll05NMiVPbYAw==",
+      "path": "system.io.packaging/4.7.0",
+      "hashPath": "system.io.packaging.4.7.0.nupkg.sha512"
     },
     "System.Linq/4.3.0": {
       "type": "package",

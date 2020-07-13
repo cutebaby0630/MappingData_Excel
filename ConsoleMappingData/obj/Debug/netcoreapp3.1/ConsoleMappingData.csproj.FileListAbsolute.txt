@@ -60,4 +60,6 @@ C:\Users\user\Source\Repos\ConsoleMappingData\ConsoleMappingData\bin\Debug\netco
 C:\Users\user\Source\Repos\ConsoleMappingData\ConsoleMappingData\bin\Debug\netcoreapp3.1\runtimes\osx\native\libgrpc_csharp_ext.x86.dylib
 C:\Users\user\Source\Repos\ConsoleMappingData\ConsoleMappingData\bin\Debug\netcoreapp3.1\runtimes\win\native\grpc_csharp_ext.x64.dll
 C:\Users\user\Source\Repos\ConsoleMappingData\ConsoleMappingData\bin\Debug\netcoreapp3.1\runtimes\win\native\grpc_csharp_ext.x86.dll
+C:\Users\user\Source\Repos\ConsoleMappingData\ConsoleMappingData\bin\Debug\netcoreapp3.1\DocumentFormat.OpenXml.dll
+C:\Users\user\Source\Repos\ConsoleMappingData\ConsoleMappingData\bin\Debug\netcoreapp3.1\System.IO.Packaging.dll
 C:\Users\user\Source\Repos\ConsoleMappingData\ConsoleMappingData\obj\Debug\netcoreapp3.1\ConsoleMappingData.csproj.CoreCompileInputs.cache
